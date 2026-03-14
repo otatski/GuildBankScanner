@@ -19,13 +19,7 @@ You should see `[GuildBankScanner] Loaded.` in your chat when you log in.
 
 ## Usage
 
-### Option A — Button on the Guild Bank frame
-
-1. Walk up to your guild bank and open it.
-2. Click the **Scan Bank** button that appears in the bottom-left corner of the guild bank window.
-3. The addon scans all tabs you have permission to view, then opens the export window automatically.
-
-### Option B — Slash command
+### Slash command
 
 You must be standing at the guild bank for a fresh scan:
 
