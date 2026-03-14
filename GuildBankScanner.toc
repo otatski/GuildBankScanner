@@ -1,0 +1,8 @@
+## Interface: 120000, 120001
+## Title: Guild Bank Scanner
+## Notes: Scans guild bank and exports inventory as CSV for recipe crafting analysis
+## Version: 0.0.1
+## Author: Parvins
+## SavedVariables: GuildBankScannerDB
+
+GuildBankScanner.lua
