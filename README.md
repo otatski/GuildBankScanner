@@ -39,7 +39,7 @@ After a scan completes, an export window opens automatically. It contains the fu
 
 1. Click **Select All** (or press `Ctrl-A` inside the text box).
 2. Press `Ctrl-C` to copy.
-3. Paste into the [web app](../guild-bank-web) on the Import screen.
+3. Paste into the [Guild Bank Scanner web app](https://craftingplanner.com/) on the Import screen.
 
 The last scan is saved to disk (`SavedVariables`) so you can re-open the export window at any time with `/gbscan export` — even after closing the guild bank or logging out.
 
