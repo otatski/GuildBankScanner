@@ -1,6 +1,6 @@
 # GuildBankScanner
 
-A World of Warcraft: Midnight addon that scans your guild bank and exports the full inventory as a CSV. Designed to work alongside the [Guild Bank Scanner web app](../guild-bank-web) for crafting analysis — paste the CSV in, select the recipes you care about, and see exactly how many you can craft from what's in the bank.
+A World of Warcraft: Midnight addon that scans your guild bank and exports the full inventory as a CSV. Designed to work alongside the [Guild Bank Scanner web app](https://craftingplanner.com/) for crafting analysis — paste the CSV in, select the recipes you care about, and see exactly how many you can craft from what's in the bank.
 
 ---
 
