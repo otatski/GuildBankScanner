@@ -1,1 +1,17 @@
-.vscode/settings.json
+# WoW SavedVariables (generated at runtime, personal to each user)
+*.lua.bak
+WTF/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.sw?
+
+# Packaging artifacts
+*.zip
+*.tar.gz
