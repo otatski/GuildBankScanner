@@ -1,0 +1,59 @@
+name: Package Addon
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      # Only run when addon files actually change
+      - 'GuildBankScanner.toc'
+      - 'GuildBankScanner.lua'
+      - 'README.md'
+      - 'LICENSE'
+
+jobs:
+  package:
+    name: Build release zip
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Read version from TOC
+        id: version
+        run: |
+          VERSION=$(grep "^## Version:" GuildBankScanner.toc | sed 's/## Version: *//')
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "Detected version: $VERSION"
+
+      - name: Build zip
+        run: |
+          ZIP_NAME="GuildBankScanner-v${{ steps.version.outputs.VERSION }}.zip"
+          # Stage files into the required inner folder structure
+          mkdir -p staging/GuildBankScanner
+          cp GuildBankScanner.lua staging/GuildBankScanner/
+          cp GuildBankScanner.toc staging/GuildBankScanner/
+          cp README.md             staging/GuildBankScanner/
+          cp LICENSE               staging/GuildBankScanner/
+          # Create zip from inside staging so the path is GuildBankScanner/...
+          cd staging
+          zip -r "../$ZIP_NAME" GuildBankScanner/
+          cd ..
+          echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
+
+      - name: Upload zip as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: GuildBankScanner-v${{ steps.version.outputs.VERSION }}
+          path: ${{ env.ZIP_NAME }}
+          retention-days: 90
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.VERSION }}
+          name: GuildBankScanner v${{ steps.version.outputs.VERSION }}
+          files: ${{ env.ZIP_NAME }}
+          generate_release_notes: true
+          fail_on_unmatched_files: true
