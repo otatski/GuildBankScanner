@@ -16,6 +16,8 @@ jobs:
   package:
     name: Build release zip
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -31,13 +33,11 @@ jobs:
       - name: Build zip
         run: |
           ZIP_NAME="GuildBankScanner-v${{ steps.version.outputs.VERSION }}.zip"
-          # Stage files into the required inner folder structure
           mkdir -p staging/GuildBankScanner
           cp GuildBankScanner.lua staging/GuildBankScanner/
           cp GuildBankScanner.toc staging/GuildBankScanner/
           cp README.md             staging/GuildBankScanner/
           cp LICENSE               staging/GuildBankScanner/
-          # Create zip from inside staging so the path is GuildBankScanner/...
           cd staging
           zip -r "../$ZIP_NAME" GuildBankScanner/
           cd ..
@@ -56,5 +56,4 @@ jobs:
           tag_name: v${{ steps.version.outputs.VERSION }}
           name: GuildBankScanner v${{ steps.version.outputs.VERSION }}
           files: ${{ env.ZIP_NAME }}
-          generate_release_notes: true
           fail_on_unmatched_files: true
